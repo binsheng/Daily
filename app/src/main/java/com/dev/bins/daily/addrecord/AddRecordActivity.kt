@@ -1,15 +1,14 @@
-package com.dev.bins.daily
+package com.dev.bins.daily.addrecord
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
+import com.dev.bins.daily.R
 
-
-    val recycleView = findViewById(R.id.recycleView)
+class AddRecordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_add_record)
     }
 }
