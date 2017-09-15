@@ -1,7 +1,7 @@
-package com.dev.bins.daily.data
+package com.dev.bins.daily.database
 
-import com.dev.bins.daily.data.Daily.Companion.DB_NAME
-import com.dev.bins.daily.data.Daily.Companion.DB_VERSION
+import com.dev.bins.daily.database.Daily.Companion.DB_NAME
+import com.dev.bins.daily.database.Daily.Companion.DB_VERSION
 import com.raizlabs.android.dbflow.annotation.Database
 
 /**

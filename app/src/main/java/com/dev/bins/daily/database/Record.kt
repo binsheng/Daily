@@ -1,4 +1,4 @@
-package com.dev.bins.daily.data
+package com.dev.bins.daily.database
 
 import com.raizlabs.android.dbflow.annotation.Column
 import com.raizlabs.android.dbflow.annotation.PrimaryKey
