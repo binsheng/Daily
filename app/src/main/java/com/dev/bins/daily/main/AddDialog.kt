@@ -10,6 +10,7 @@ import android.widget.Toast
 import butterknife.bindView
 import com.dev.bins.daily.R
 import com.dev.bins.daily.database.Record
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by bin on 17/09/2017.
@@ -54,6 +55,7 @@ class AddDialog : DialogFragment() {
             var record = Record()
             record.content = content
             record.save()
+            EventBus.getDefault().post(MainActivity.AddRecordEvent(record))
             dismiss()
         }
         mBtnCancel.setOnClickListener {

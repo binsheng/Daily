@@ -2,6 +2,7 @@ package com.dev.bins.daily.main
 
 
 import android.os.Bundle
+import android.support.annotation.MainThread
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -10,7 +11,11 @@ import butterknife.bindView
 import com.dev.bins.daily.R
 import com.dev.bins.daily.adapter.DailyAdapter
 import com.dev.bins.daily.database.Record
+import com.raizlabs.android.dbflow.kotlinextensions.insert
 import com.raizlabs.android.dbflow.sql.language.SQLite
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +44,29 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             addDialog.show(supportFragmentManager, "add")
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public fun onAddRecordEvent(recordEvent: AddRecordEvent) {
+        datas.add(0, recordEvent.record)
+        adapter!!.notifyItemInserted(0)
+    }
+
+
+    public override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    public override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+
+    class AddRecordEvent(record: Record) {
+
+        var record: Record = record
     }
 
 
