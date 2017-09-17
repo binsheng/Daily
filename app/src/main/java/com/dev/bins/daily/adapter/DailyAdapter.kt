@@ -12,13 +12,17 @@ import com.dev.bins.daily.database.Record
 /**
  * Created by bin on 16/09/2017.
  */
-class DailyAdapter : RecyclerView.Adapter<DailyAdapter.Holder>() {
+class DailyAdapter(datas: ArrayList<Record>) : RecyclerView.Adapter<DailyAdapter.Holder>() {
 
     var datas: ArrayList<Record>
 
+
     init {
-        datas = ArrayList()
+        this.datas = datas
     }
+
+
+
 
     override fun onBindViewHolder(holder: Holder?, position: Int) {
         val data = datas[position]
