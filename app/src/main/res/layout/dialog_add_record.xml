@@ -19,6 +19,7 @@
 
 
         <EditText
+            android:textCursorDrawable="@color/colorPrimary"
             android:id="@+id/et_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -33,6 +34,7 @@
 
         <LinearLayout
             android:id="@+id/ll"
+            android:paddingBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

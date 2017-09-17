@@ -1,5 +1,6 @@
 package com.dev.bins.daily.main
 
+import android.animation.Animator
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.text.TextUtils
@@ -21,7 +22,7 @@ class AddDialog : DialogFragment() {
     val mBtnSave: Button by bindView(R.id.btn_save)
     val mBtnCancel: Button by bindView(R.id.btn_cancel)
     val mEtContent: EditText by bindView(R.id.et_content)
-
+    var exitAnimator: Animator? = null
 
     override fun onResume() {
         super.onResume()
@@ -45,6 +46,7 @@ class AddDialog : DialogFragment() {
             val animator = ViewAnimationUtils.createCircularReveal(view, view!!.width, view.height, 0f, view.height.toFloat())
             animator.duration = 200
             animator.start()
+            createExitAnimator(view)
         }
         mBtnSave.setOnClickListener {
             var content = mEtContent.text.toString().trim()
@@ -56,13 +58,37 @@ class AddDialog : DialogFragment() {
             record.content = content
             record.save()
             EventBus.getDefault().post(MainActivity.AddRecordEvent(record))
-            dismiss()
+            exitAnimator!!.start()
         }
         mBtnCancel.setOnClickListener {
-            dismiss()
+            exitAnimator!!.start()
         }
 
 
+    }
+
+    private fun createExitAnimator(view: View) {
+        exitAnimator = ViewAnimationUtils.createCircularReveal(view, view!!.width, view.height, view.height.toFloat(), 0f)
+        exitAnimator!!.duration = 200
+
+        exitAnimator!!.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationEnd(p0: Animator?) {
+                dismiss()
+
+            }
+
+            override fun onAnimationStart(p0: Animator?) {
+
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+
+            }
+        })
     }
 
 
