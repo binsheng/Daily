@@ -2,7 +2,6 @@ package com.dev.bins.daily.main
 
 
 import android.os.Bundle
-import android.support.annotation.MainThread
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import butterknife.bindView
 import com.dev.bins.daily.R
 import com.dev.bins.daily.adapter.DailyAdapter
 import com.dev.bins.daily.database.Record
-import com.raizlabs.android.dbflow.kotlinextensions.insert
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     var adapter: DailyAdapter? = null
     val datas = ArrayList<Record>()
 
-    val addDialog = AddDialog()
+    var addDialog:AddDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,7 +40,8 @@ class MainActivity : AppCompatActivity() {
         recycleView.layoutManager = LinearLayoutManager(this)
         recycleView.adapter = adapter
         fab.setOnClickListener {
-            addDialog.show(supportFragmentManager, "add")
+            addDialog = AddDialog()
+            addDialog!!.show(supportFragmentManager,"add")
         }
     }
 
