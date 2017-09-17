@@ -47,7 +47,8 @@ dependencies {
     // RXJava 2 Kotlin Extensions Support
     compile "com.github.Raizlabs.DBFlow:dbflow-rx2-kotlinextensions:${dbflow_version}"
 
-
+    //eventbus
+    compile 'org.greenrobot:eventbus:3.0.0'
 
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
