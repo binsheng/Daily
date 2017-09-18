@@ -11,7 +11,7 @@
 
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#96686767"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_above="@+id/rl"
-            android:layout_below="@id/toolbar2"
+            android:layout_below="@id/toolbar"
             android:background="@android:color/white"
             android:gravity="top|left"
             android:hint="请填入你的故事……"
@@ -70,19 +70,16 @@
                 android:layout_below="@id/rl_time"
                 android:paddingBottom="10dp">
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
 
                 <Button
+                    android:background="@null"
                     android:id="@+id/btn_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cancel" />
 
                 <Button
+                    android:background="@null"
                     android:id="@+id/btn_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
