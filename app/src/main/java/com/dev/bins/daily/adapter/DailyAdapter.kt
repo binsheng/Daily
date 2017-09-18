@@ -22,9 +22,6 @@ class DailyAdapter(datas: ArrayList<Record>) : RecyclerView.Adapter<DailyAdapter
     }
 
 
-
-
-
     override fun onBindViewHolder(holder: Holder?, position: Int) {
         val data = datas[position]
         holder!!.mTvContent.text = data.content

@@ -45,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_start_time"
@@ -72,17 +73,23 @@
 
 
                 <Button
-                    android:background="@null"
+                    android:background="@mipmap/time"
+                    android:id="@+id/btn_add_time"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <Button
                     android:id="@+id/btn_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@null"
                     android:text="@string/cancel" />
 
                 <Button
-                    android:background="@null"
                     android:id="@+id/btn_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@null"
                     android:text="@string/save" />
 
             </LinearLayout>
