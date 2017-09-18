@@ -70,11 +70,9 @@ class AddDialog : DialogFragment() {
     private fun createExitAnimator(view: View) {
         exitAnimator = ViewAnimationUtils.createCircularReveal(view, view!!.width, view.height, view.height.toFloat(), 0f)
         exitAnimator!!.duration = 200
-
         exitAnimator!!.addListener(object : Animator.AnimatorListener {
             override fun onAnimationEnd(p0: Animator?) {
                 dismiss()
-
             }
 
             override fun onAnimationStart(p0: Animator?) {

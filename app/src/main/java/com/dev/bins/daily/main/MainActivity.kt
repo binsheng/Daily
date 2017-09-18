@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     public fun onAddRecordEvent(recordEvent: AddRecordEvent) {
         datas.add(0, recordEvent.record)
         adapter!!.notifyItemInserted(0)
+        recycleView.smoothScrollToPosition(0)
     }
 
 
