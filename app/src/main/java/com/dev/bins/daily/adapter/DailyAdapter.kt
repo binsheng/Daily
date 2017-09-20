@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.dev.bins.daily.R
 import com.dev.bins.daily.database.Record
-import kotlinx.android.synthetic.main.daily_item.*
 import kotlinx.android.synthetic.main.daily_item.view.*
 
 /**

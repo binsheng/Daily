@@ -17,9 +17,6 @@ import org.greenrobot.eventbus.EventBus
 class AddDialog : DialogFragment() {
 
 
-//    val mBtnSave: Button by bindView(R.id.btn_save)
-//    val mBtnCancel: Button by bindView(R.id.btn_cancel)
-//    val mEtContent: EditText by bindView(R.id.et_content)
     var exitAnimator: Animator? = null
 
     override fun onResume() {
@@ -60,6 +57,9 @@ class AddDialog : DialogFragment() {
         }
         btnCancel.setOnClickListener {
             exitAnimator!!.start()
+        }
+        btnAddTime.setOnClickListener {
+
         }
 
 
