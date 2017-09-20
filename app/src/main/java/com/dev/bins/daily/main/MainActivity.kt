@@ -4,7 +4,9 @@ package com.dev.bins.daily.main
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.animation.AccelerateDecelerateInterpolator
 import com.dev.bins.daily.R
+import com.dev.bins.daily.R.id.recycleView
 import com.dev.bins.daily.adapter.DailyAdapter
 import com.dev.bins.daily.database.Record
 import com.raizlabs.android.dbflow.sql.language.SQLite
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     var adapter: DailyAdapter? = null
     val datas = ArrayList<Record>()
 
-    var addDialog:AddDialog? = null
+    var addDialog: AddDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,8 +38,16 @@ class MainActivity : AppCompatActivity() {
         recycleView.adapter = adapter
         fab.setOnClickListener {
             addDialog = AddDialog()
-            addDialog!!.show(supportFragmentManager,"add")
+            addDialog!!.show(supportFragmentManager, "add")
         }
+        val animate = fab.animate()
+        animate.scaleX(1f)
+                .scaleY(1f)
+                .interpolator = AccelerateDecelerateInterpolator()
+        animate.duration = 500
+        animate.start()
+
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
