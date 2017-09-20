@@ -19,7 +19,7 @@
 
 
         <EditText
-            android:id="@+id/et_content"
+            android:id="@+id/etContent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_above="@+id/rl"
@@ -49,14 +49,14 @@
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/tv_start_time"
+                    android:id="@+id/tvStartTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/darker_gray"
                     tools:text="2017-09-16 10:00" />
 
                 <TextView
-                    android:id="@+id/tv_end_time"
+                    android:id="@+id/tvEndTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -74,19 +74,19 @@
 
                 <Button
                     android:background="@mipmap/time"
-                    android:id="@+id/btn_add_time"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:id="@+id/btnAddTime"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
                 <Button
-                    android:id="@+id/btn_cancel"
+                    android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:text="@string/cancel" />
 
                 <Button
-                    android:id="@+id/btn_save"
+                    android:id="@+id/btnSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"

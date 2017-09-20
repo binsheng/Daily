@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.text.TextUtils
 import android.view.*
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import butterknife.bindView
 import com.dev.bins.daily.R
 import com.dev.bins.daily.database.Record
+import kotlinx.android.synthetic.main.dialog_add_record.*
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -19,9 +17,9 @@ import org.greenrobot.eventbus.EventBus
 class AddDialog : DialogFragment() {
 
 
-    val mBtnSave: Button by bindView(R.id.btn_save)
-    val mBtnCancel: Button by bindView(R.id.btn_cancel)
-    val mEtContent: EditText by bindView(R.id.et_content)
+//    val mBtnSave: Button by bindView(R.id.btn_save)
+//    val mBtnCancel: Button by bindView(R.id.btn_cancel)
+//    val mEtContent: EditText by bindView(R.id.et_content)
     var exitAnimator: Animator? = null
 
     override fun onResume() {
@@ -48,8 +46,8 @@ class AddDialog : DialogFragment() {
             animator.start()
             createExitAnimator(view)
         }
-        mBtnSave.setOnClickListener {
-            var content = mEtContent.text.toString().trim()
+        btnSave.setOnClickListener {
+            var content = etContent.text.toString().trim()
             if (TextUtils.isEmpty(content)) {
                 Toast.makeText(activity, getText(R.string.content_empty), Toast.LENGTH_SHORT)
                 return@setOnClickListener
@@ -60,7 +58,7 @@ class AddDialog : DialogFragment() {
             EventBus.getDefault().post(MainActivity.AddRecordEvent(record))
             exitAnimator!!.start()
         }
-        mBtnCancel.setOnClickListener {
+        btnCancel.setOnClickListener {
             exitAnimator!!.start()
         }
 

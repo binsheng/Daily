@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt' // required for kotlin.
+apply plugin: 'kotlin-android-extensions'
 
 def dbflow_version = "4.1.1"
 android {
@@ -28,7 +29,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+//    compile "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
 
     kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
 
@@ -56,7 +57,6 @@ dependencies {
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     compile 'io.reactivex.rxjava2:rxjava:2.+'
-    compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
     testCompile 'junit:junit:4.12'
 }
 repositories {

@@ -4,10 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import butterknife.bindView
 import com.dev.bins.daily.R
 import com.dev.bins.daily.database.Record
+import kotlinx.android.synthetic.main.daily_item.*
+import kotlinx.android.synthetic.main.daily_item.view.*
 
 /**
  * Created by bin on 16/09/2017.
@@ -23,10 +23,7 @@ class DailyAdapter(datas: ArrayList<Record>) : RecyclerView.Adapter<DailyAdapter
 
 
     override fun onBindViewHolder(holder: Holder?, position: Int) {
-        val data = datas[position]
-        holder!!.mTvContent.text = data.content
-        holder.mTvStartTime.text = data.startDate.toString()
-        holder.mTvEndTime.text = data.endDate.toString()
+        holder?.bindData(datas[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
@@ -40,10 +37,15 @@ class DailyAdapter(datas: ArrayList<Record>) : RecyclerView.Adapter<DailyAdapter
 
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvContent = itemView.tvContent
+        val tvStartTime = itemView.tvStartTime
+        val tvEndTime = itemView.tvEndTime
 
-        val mTvStartTime: TextView by bindView(R.id.tv_start_time)
-        val mTvEndTime: TextView by bindView(R.id.tv_end_time)
-        val mTvContent: TextView by bindView(R.id.tv_content)
+        fun bindData(record: Record) {
+            tvContent.text = record.content
+            tvStartTime.text = record.startDate?.toString() ?: "-"
+            tvEndTime.text = record.endDate?.toString() ?: "-"
+        }
 
     }
 
