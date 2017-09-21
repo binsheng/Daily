@@ -43,7 +43,7 @@ class DailyAdapter(datas: ArrayList<Record>) : RecyclerView.Adapter<DailyAdapter
         fun bindData(record: Record) {
             tvContent.text = record.content
             tvStartTime.text = record.startDate?.toString() ?: "-"
-            tvEndTime.text = record.endDate?.toString() ?: "-"
+            tvEndTime.text = record.endDate?.toString() ?: itemView.context.getString(R.string.doing)
         }
 
     }

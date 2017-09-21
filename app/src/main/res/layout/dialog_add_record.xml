@@ -73,10 +73,10 @@
 
 
                 <Button
-                    android:background="@mipmap/time"
                     android:id="@+id/btnAddTime"
                     android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_height="30dp"
+                    android:background="@mipmap/time" />
 
                 <Button
                     android:id="@+id/btnCancel"
@@ -90,6 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    android:enabled="false"
                     android:text="@string/save" />
 
             </LinearLayout>

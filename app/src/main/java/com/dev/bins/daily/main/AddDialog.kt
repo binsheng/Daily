@@ -3,13 +3,16 @@ package com.dev.bins.daily.main
 import android.animation.Animator
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.*
 import android.widget.Toast
 import com.dev.bins.daily.R
 import com.dev.bins.daily.database.Record
 import kotlinx.android.synthetic.main.dialog_add_record.*
 import org.greenrobot.eventbus.EventBus
+import java.util.*
 
 /**
  * Created by bin on 17/09/2017.
@@ -18,7 +21,8 @@ class AddDialog : DialogFragment() {
 
 
     var exitAnimator: Animator? = null
-
+    var startTime: Date? = null
+    var endTime: Date? = null
     override fun onResume() {
         super.onResume()
         var params = dialog.window.attributes
@@ -43,10 +47,22 @@ class AddDialog : DialogFragment() {
             animator.start()
             createExitAnimator(view)
         }
+        etContent.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                btnSave.isEnabled = etContent.text.isNotEmpty()
+            }
+
+        })
         btnSave.setOnClickListener {
             var content = etContent.text.toString().trim()
-            if (TextUtils.isEmpty(content)) {
-                Toast.makeText(activity, getText(R.string.content_empty), Toast.LENGTH_SHORT)
+            if (startTime == null){
+                Toast.makeText(activity,"开始时间不能为空",Toast.LENGTH_SHORT);
                 return@setOnClickListener
             }
             var record = Record()
