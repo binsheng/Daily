@@ -1,6 +1,7 @@
 package com.dev.bins.daily.main
 
 import android.animation.Animator
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.text.Editable
@@ -61,12 +62,13 @@ class AddDialog : DialogFragment() {
         })
         btnSave.setOnClickListener {
             var content = etContent.text.toString().trim()
-            if (startTime == null){
-                Toast.makeText(activity,"开始时间不能为空",Toast.LENGTH_SHORT);
+            if (startTime == null) {
+                Toast.makeText(activity, "开始时间不能为空", Toast.LENGTH_SHORT);
                 return@setOnClickListener
             }
             var record = Record()
             record.content = content
+            record.startDate = startTime
             record.save()
             EventBus.getDefault().post(MainActivity.AddRecordEvent(record))
             exitAnimator!!.start()
@@ -75,7 +77,12 @@ class AddDialog : DialogFragment() {
             exitAnimator!!.start()
         }
         btnAddTime.setOnClickListener {
-
+            val calendar = Calendar.getInstance()
+            TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                calendar.set(Calendar.MINUTE, minute)
+                startTime = calendar.time
+            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
         }
 
 
