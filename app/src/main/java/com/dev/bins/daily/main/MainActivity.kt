@@ -9,6 +9,7 @@ import com.dev.bins.daily.R
 import com.dev.bins.daily.adapter.DailyAdapter
 import com.dev.bins.daily.database.Record
 import com.dev.bins.daily.database.Record_Table
+import com.raizlabs.android.dbflow.kotlinextensions.or
 import com.raizlabs.android.dbflow.sql.language.SQLite
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val data = SQLite.select()
                 .from(Record::class.java)
                 .where(Record_Table.startDate.greaterThan(dayStartTime))
-                .and(Record_Table.endDate.lessThan(dayEndTime))
+                .and(Record_Table.endDate.lessThan(dayEndTime).or(Record_Table.endDate.isNull))
                 .orderBy(Record_Table.startDate, false)
                 .queryList()
         datas.addAll(data)
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         recycleView.adapter = adapter
         fab.setOnClickListener {
             addDialog = AddDialog()
-            addDialog!!.show(supportFragmentManager, "add")
+            addDialog!!.show(supportFragmentManager, AddDialog.FRAGMENT_NAME)
         }
         val animate = fab.animate()
         animate.scaleX(1f)

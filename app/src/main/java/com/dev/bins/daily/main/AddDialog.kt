@@ -20,6 +20,10 @@ import java.util.*
  */
 class AddDialog : DialogFragment() {
 
+    companion object {
+        val FRAGMENT_NAME = AddDialog.javaClass.simpleName
+    }
+
 
     var exitAnimator: Animator? = null
     var startTime: Date? = null
