@@ -33,22 +33,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         val startCalendar = Calendar.getInstance()
-        startCalendar.set(Calendar.HOUR_OF_DAY,0)
-        startCalendar.set(Calendar.MINUTE,0)
-        startCalendar.set(Calendar.SECOND,0)
+        startCalendar.set(Calendar.HOUR_OF_DAY, 0)
+        startCalendar.set(Calendar.MINUTE, 0)
+        startCalendar.set(Calendar.SECOND, 0)
         val dayStartTime = startCalendar.time
         val endCalendar = Calendar.getInstance()
-        endCalendar.set(Calendar.HOUR_OF_DAY,23)
-        endCalendar.set(Calendar.MINUTE,59)
-        endCalendar.set(Calendar.SECOND,59)
+        endCalendar.set(Calendar.HOUR_OF_DAY, 23)
+        endCalendar.set(Calendar.MINUTE, 59)
+        endCalendar.set(Calendar.SECOND, 59)
         val dayEndTime = endCalendar.time
         val data = SQLite.select()
                 .from(Record::class.java)
                 .where(Record_Table.startDate.greaterThan(dayStartTime))
                 .and(Record_Table.endDate.lessThan(dayEndTime).or(Record_Table.endDate.isNull))
                 .orderBy(Record_Table.startDate, false)
-                .queryList()
-        datas.addAll(data)
         adapter = DailyAdapter(datas)
         recycleView.layoutManager = LinearLayoutManager(this)
         recycleView.adapter = adapter

@@ -86,6 +86,7 @@ class AddDialog : DialogFragment() {
                 calendar.set(Calendar.MINUTE, minute)
                 startTime = calendar.time
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+
         }
 
 
