@@ -1,7 +1,6 @@
 package com.dev.bins.daily.main
 
 import android.animation.Animator
-import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.text.Editable
@@ -10,6 +9,7 @@ import android.view.*
 import android.widget.Toast
 import com.dev.bins.daily.R
 import com.dev.bins.daily.database.Record
+import com.dev.bins.datepicker.TimePickerDialog
 import kotlinx.android.synthetic.main.dialog_add_record.*
 import org.greenrobot.eventbus.EventBus
 import java.util.*
@@ -81,11 +81,17 @@ class AddDialog : DialogFragment() {
         }
         btnAddTime.setOnClickListener {
             val calendar = Calendar.getInstance()
-            TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                calendar.set(Calendar.MINUTE, minute)
-                startTime = calendar.time
-            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+//            TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
+//                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+//                calendar.set(Calendar.MINUTE, minute)
+//                startTime = calendar.time
+//            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+
+            var timePickDialog = TimePickerDialog()
+            timePickDialog.setmFromTimeSetListener { view, hourOfDay, minute ->  }
+            timePickDialog.setmToTimeSetListener { view, hourOfDay, minute ->  }
+            timePickDialog.show(fragmentManager,"")
+
 
         }
 

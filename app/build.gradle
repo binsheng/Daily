@@ -29,34 +29,28 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-//    compile "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
-
+    //    compile "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
     kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
-
     compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
     compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
-
     // sql-cipher database encryption (optional)
-//    compile "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:${dbflow_version}"
-//    compile "net.zetetic:android-database-sqlcipher:${sqlcipher_version}@aar"
-
+    //    compile "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:${dbflow_version}"
+    //    compile "net.zetetic:android-database-sqlcipher:${sqlcipher_version}@aar"
     // kotlin extensions
     compile "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${dbflow_version}"
     // RXJava 2 support
     compile "com.github.Raizlabs.DBFlow:dbflow-rx2:${dbflow_version}"
-
     // RXJava 2 Kotlin Extensions Support
     compile "com.github.Raizlabs.DBFlow:dbflow-rx2-kotlinextensions:${dbflow_version}"
-
     //eventbus
     compile 'org.greenrobot:eventbus:3.0.0'
-
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:cardview-v7:26.0.0-alpha1'
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     compile 'io.reactivex.rxjava2:rxjava:2.+'
+    compile project(':datepicker')
 
     testCompile 'junit:junit:4.12'
 }
