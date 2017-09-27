@@ -52,12 +52,11 @@ class MainActivity : AppCompatActivity() {
         recycleView.layoutManager = LinearLayoutManager(this)
         recycleView.adapter = adapter
         fab.setOnClickListener {
-//            addDialog = AddDialog()
-//            addDialog!!.show(supportFragmentManager, AddDialog.FRAGMENT_NAME)
-            com.dev.bins.datepicker.TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
+            addDialog = AddDialog()
+            addDialog!!.show(supportFragmentManager, AddDialog.FRAGMENT_NAME)
 
-            }, supportFragmentManager).show()
         }
+
         val animate = fab.animate()
         animate.scaleX(1f)
                 .scaleY(1f)

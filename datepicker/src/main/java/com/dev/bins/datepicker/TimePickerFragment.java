@@ -15,6 +15,7 @@ import android.widget.TimePicker;
 public class TimePickerFragment extends Fragment {
 
 
+    private TimePicker mTimePicker;
     public static TimePickerFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -24,7 +25,6 @@ public class TimePickerFragment extends Fragment {
         return fragment;
     }
 
-//    TimePicker mTimePicker;
 
     @Nullable
     @Override
@@ -34,8 +34,8 @@ public class TimePickerFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//        mTimePicker = view.findViewById(R.id.timePicker);
-//        mTimePicker.setIs24HourView(true);
+        mTimePicker = view.findViewById(R.id.timePicker);
+        mTimePicker.setIs24HourView(true);
 
     }
 }

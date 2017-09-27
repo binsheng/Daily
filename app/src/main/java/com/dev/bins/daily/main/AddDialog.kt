@@ -88,9 +88,8 @@ class AddDialog : DialogFragment() {
 //                startTime = calendar.time
 //            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
 
-            TimePickerDialog(activity,android.app.TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
+            TimePickerDialog().show(childFragmentManager,"xx")
 
-            },childFragmentManager).show()
 //            var timePickDialog = TimePickerDialog()
 //            timePickDialog.setmFromTimeSetListener { view, hourOfDay, minute ->  }
 //            timePickDialog.setmToTimeSetListener { view, hourOfDay, minute ->  }

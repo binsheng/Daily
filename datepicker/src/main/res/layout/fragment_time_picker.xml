@@ -5,10 +5,10 @@
     android:orientation="vertical">
 
 
-    <!--<TimePicker-->
-        <!--android:id="@+id/timePicker"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
