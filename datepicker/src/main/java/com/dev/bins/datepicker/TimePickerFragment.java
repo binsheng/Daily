@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.TimePicker;
 
 /**
  * Created by bin on 25/09/2017.
@@ -15,15 +15,27 @@ import android.widget.TextView;
 public class TimePickerFragment extends Fragment {
 
 
+    public static TimePickerFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        TimePickerFragment fragment = new TimePickerFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+//    TimePicker mTimePicker;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return new TextView(getContext());
+        return inflater.inflate(R.layout.fragment_time_picker,container,false);
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+//        mTimePicker = view.findViewById(R.id.timePicker);
+//        mTimePicker.setIs24HourView(true);
+
     }
 }

@@ -1,13 +1,12 @@
 package com.dev.bins.daily.main
 
 import android.animation.Animator
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.TimePicker
 import android.widget.Toast
 import com.dev.bins.daily.R
 import com.dev.bins.daily.database.Record
@@ -89,12 +88,15 @@ class AddDialog : DialogFragment() {
 //                startTime = calendar.time
 //            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
 
+            TimePickerDialog(activity,android.app.TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
+
+            },childFragmentManager).show()
 //            var timePickDialog = TimePickerDialog()
 //            timePickDialog.setmFromTimeSetListener { view, hourOfDay, minute ->  }
 //            timePickDialog.setmToTimeSetListener { view, hourOfDay, minute ->  }
 //            timePickDialog.show(fragmentManager,"")
-            val intent = Intent(activity,TimePickerDialog::class.java)
-            startActivity(intent)
+//            val intent = Intent(activity,TimePickerDialog::class.java)
+//            startActivity(intent)
 
         }
 

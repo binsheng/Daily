@@ -1,6 +1,7 @@
 package com.dev.bins.daily.main
 
 
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -51,8 +52,11 @@ class MainActivity : AppCompatActivity() {
         recycleView.layoutManager = LinearLayoutManager(this)
         recycleView.adapter = adapter
         fab.setOnClickListener {
-            addDialog = AddDialog()
-            addDialog!!.show(supportFragmentManager, AddDialog.FRAGMENT_NAME)
+//            addDialog = AddDialog()
+//            addDialog!!.show(supportFragmentManager, AddDialog.FRAGMENT_NAME)
+            com.dev.bins.datepicker.TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
+
+            }, supportFragmentManager).show()
         }
         val animate = fab.animate()
         animate.scaleX(1f)
