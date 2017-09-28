@@ -41,33 +41,6 @@ public class TimePickerDialog extends DialogFragment {
     public TimePickerDialog() {
     }
 
-//    @NonNull
-//    @Override
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//        LayoutInflater inflater = getActivity().getLayoutInflater();
-//        View view = inflater.inflate(R.layout.dialog_time_picker, null);
-//        mTabLayout = (TabLayout) view.findViewById(R.id.tablayout);
-//        mViewPager = (ViewPager) view.findViewById(R.id.vp);
-//        mFragments.add(TimePickerFragment.newInstance());
-//        mFragments.add(TimePickerFragment.newInstance());
-//        mAdapter = new Adapter(getChildFragmentManager());
-//        mViewPager.setAdapter(mAdapter);
-//        mTabLayout.setupWithViewPager(mViewPager);
-//        builder.setView(view);
-//        return builder.create();
-//    }
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
-//        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
-//        float height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 450f, getResources().getDisplayMetrics());
-//        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-//        getDialog().getWindow().setAttributes(params);
-//    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,8 +55,34 @@ public class TimePickerDialog extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mTabLayout = (TabLayout) view.findViewById(R.id.tablayout);
         mViewPager = (ViewPager) view.findViewById(R.id.vp);
-        mFragments.add(TimePickerFragment.newInstance());
-        mFragments.add(TimePickerFragment.newInstance());
+        TimePickerFragment fromFragment = TimePickerFragment.newInstance();
+        fromFragment.setPositiveButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewPager.setCurrentItem(1);
+            }
+        });
+        fromFragment.setNegativeButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+        mFragments.add(fromFragment);
+        TimePickerFragment toFragment = TimePickerFragment.newInstance();
+        toFragment.setPositiveButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        toFragment.setNegativeButton(getString(R.string.later),new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        mFragments.add(toFragment);
         mAdapter = new Adapter(getChildFragmentManager());
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);

@@ -2,4 +2,5 @@
     <string name="app_name">DatePicker</string>
     <string name="from" translatable="false">from</string>
     <string name="to" translatable="false">to</string>
+    <string name="later">later</string>
 </resources>
