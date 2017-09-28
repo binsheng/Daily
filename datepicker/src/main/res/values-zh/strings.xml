@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DatePicker</string>
+    <string name="from" translatable="false">开始时间</string>
+    <string name="to" translatable="false">结束时间</string>
+</resources>

@@ -34,7 +34,7 @@ public class TimePickerFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mTimePicker = view.findViewById(R.id.timePicker);
+        mTimePicker = (TimePicker) view.findViewById(R.id.timePicker);
         mTimePicker.setIs24HourView(true);
 
     }
