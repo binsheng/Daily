@@ -1,5 +1,7 @@
 package com.dev.bins.datepicker;
 
+import android.app.*;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,9 @@ public class TimePickerFragment extends Fragment {
     private TimePicker mTimePicker;
     private Button mBtnOk;
     private Button mBtnCancel;
+    private TimePicker.OnTimeChangedListener listener;
+    private View.OnClickListener mBtnOkListener;
+    private View.OnClickListener mBtnCancelListener;
 
     public static TimePickerFragment newInstance() {
 
@@ -39,36 +44,26 @@ public class TimePickerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mTimePicker = (TimePicker) view.findViewById(R.id.timePicker);
-        mBtnOk = view.findViewById(R.id.btn_ok);
-        mBtnCancel = view.findViewById(R.id.btn_cancel);
+        mBtnOk = (Button) view.findViewById(R.id.btn_ok);
+        mBtnCancel = (Button) view.findViewById(R.id.btn_cancel);
         mTimePicker.setIs24HourView(true);
-
+        mBtnOk.setOnClickListener(mBtnOkListener);
+        mBtnCancel.setOnClickListener(mBtnCancelListener);
+        mTimePicker.setOnTimeChangedListener(listener);
     }
 
-    public void setPositiveButton(String text, View.OnClickListener listener) {
-        if (null != mBtnOk) {
-            mBtnOk.setText(text);
-            mBtnOk.setOnClickListener(listener);
-        }
+
+    public void setListener(TimePicker.OnTimeChangedListener listener) {
+        this.listener = listener;
     }
+
 
     public void setPositiveButton(View.OnClickListener listener) {
-        if (null != mBtnOk) {
-            mBtnOk.setOnClickListener(listener);
-        }
-    }
-
-    public void setNegativeButton(String text, View.OnClickListener listener) {
-        if (null != null) {
-            mBtnCancel.setText(text);
-            mBtnCancel.setOnClickListener(listener);
-        }
+        mBtnOkListener = listener;
     }
 
     public void setNegativeButton(View.OnClickListener listener) {
-        if (null != null) {
-            mBtnCancel.setOnClickListener(listener);
-        }
+        mBtnCancelListener = listener;
     }
 
 
