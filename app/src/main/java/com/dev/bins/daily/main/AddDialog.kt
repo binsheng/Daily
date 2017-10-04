@@ -22,6 +22,7 @@ class AddDialog : DialogFragment() {
 
     companion object {
         val FRAGMENT_NAME = AddDialog.javaClass.simpleName
+        val TAG = "time"
     }
 
 
@@ -43,6 +44,7 @@ class AddDialog : DialogFragment() {
         dialog.window.setGravity(Gravity.BOTTOM)
         return inflater!!.inflate(R.layout.dialog_add_record, container)
     }
+
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,7 +69,7 @@ class AddDialog : DialogFragment() {
         btnSave.setOnClickListener {
             var content = etContent.text.toString().trim()
             if (startTime == null) {
-                Toast.makeText(activity, "开始时间不能为空", Toast.LENGTH_SHORT)
+                Toast.makeText(activity, getString(R.string.time_empty), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             var record = Record()
@@ -96,7 +98,7 @@ class AddDialog : DialogFragment() {
                 endCalendar.set(Calendar.SECOND, 0)
                 endTime = endCalendar.time
             }
-            timePickerDialog.show(childFragmentManager, "xx")
+            timePickerDialog.show(childFragmentManager, TAG)
 
         }
 
