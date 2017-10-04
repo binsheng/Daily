@@ -3,4 +3,6 @@
     <string name="from" translatable="false">from</string>
     <string name="to" translatable="false">to</string>
     <string name="later">later</string>
+    <string name="next_fragment">next</string>
+    <string name="cancel">cancel</string>
 </resources>

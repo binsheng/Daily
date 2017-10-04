@@ -67,12 +67,13 @@ class AddDialog : DialogFragment() {
         btnSave.setOnClickListener {
             var content = etContent.text.toString().trim()
             if (startTime == null) {
-                Toast.makeText(activity, "开始时间不能为空", Toast.LENGTH_SHORT);
+                Toast.makeText(activity, "开始时间不能为空", Toast.LENGTH_SHORT)
                 return@setOnClickListener
             }
             var record = Record()
             record.content = content
             record.startDate = startTime
+            record.endDate = endTime
             record.save()
             EventBus.getDefault().post(MainActivity.AddRecordEvent(record))
             exitAnimator!!.start()
@@ -81,21 +82,21 @@ class AddDialog : DialogFragment() {
             exitAnimator!!.start()
         }
         btnAddTime.setOnClickListener {
-            val calendar = Calendar.getInstance()
-//            TimePickerDialog(activity, TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
-//                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-//                calendar.set(Calendar.MINUTE, minute)
-//                startTime = calendar.time
-//            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+            val timePickerDialog = TimePickerDialog()
+            timePickerDialog.setListener { fromHourOfDay, fromMinute, toHourOfDay, toMinute ->
+                val startCalendar = Calendar.getInstance()
+                startCalendar.set(Calendar.HOUR_OF_DAY, fromHourOfDay)
+                startCalendar.set(Calendar.MINUTE, fromMinute)
+                startCalendar.set(Calendar.SECOND, 0)
+                startTime = startCalendar.time
 
-            TimePickerDialog().show(childFragmentManager,"xx")
-
-//            var timePickDialog = TimePickerDialog()
-//            timePickDialog.setmFromTimeSetListener { view, hourOfDay, minute ->  }
-//            timePickDialog.setmToTimeSetListener { view, hourOfDay, minute ->  }
-//            timePickDialog.show(fragmentManager,"")
-//            val intent = Intent(activity,TimePickerDialog::class.java)
-//            startActivity(intent)
+                val endCalendar = Calendar.getInstance()
+                endCalendar.set(Calendar.HOUR_OF_DAY, toHourOfDay)
+                endCalendar.set(Calendar.MINUTE, toMinute)
+                endCalendar.set(Calendar.SECOND, 0)
+                endTime = endCalendar.time
+            }
+            timePickerDialog.show(childFragmentManager, "xx")
 
         }
 

@@ -31,8 +31,18 @@ public class TimePickerDialog extends DialogFragment {
     private Adapter mAdapter;
     private List<Fragment> mFragments = new ArrayList<>();
 
+    private OnTimeSetListener mListener;
+    private int mFromHourOfDay;
+    private int mFromMinute;
+
+    private int mToHourOfDay;
+    private int mToMinute;
 
     public TimePickerDialog() {
+    }
+
+    public void setListener(OnTimeSetListener listener) {
+        this.mListener = listener;
     }
 
     @Nullable
@@ -44,26 +54,21 @@ public class TimePickerDialog extends DialogFragment {
         return inflater.inflate(R.layout.dialog_time_picker, null);
     }
 
-
-    public void test() {
-        Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mTabLayout = (TabLayout) view.findViewById(R.id.tablayout);
         mViewPager = (ViewPager) view.findViewById(R.id.vp);
-        TimePickerFragment fromFragment = TimePickerFragment.newInstance();
+        TimePickerFragment fromFragment = TimePickerFragment.newInstance(getString(R.string.next_fragment), getString(R.string.cancel));
         fromFragment.setListener(new TimePicker.OnTimeChangedListener() {
             @Override
-            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-
+            public void onTimeChanged(TimePicker timePicker, int hourOfDay, int minute) {
+                mFromHourOfDay = hourOfDay;
+                mFromMinute = minute;
             }
         });
         fromFragment.setPositiveButton(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
                 mViewPager.setCurrentItem(1);
             }
         });
@@ -76,16 +81,26 @@ public class TimePickerDialog extends DialogFragment {
 
         mFragments.add(fromFragment);
         TimePickerFragment toFragment = TimePickerFragment.newInstance();
+        toFragment.setListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int hourOfDay, int minute) {
+                mToHourOfDay = hourOfDay;
+                mToMinute = minute;
+            }
+        });
         toFragment.setPositiveButton(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (null != mListener) {
+                    mListener.onTimeSet(mFromHourOfDay, mFromMinute, mToHourOfDay, mToMinute);
+                }
+                dismiss();
             }
         });
         toFragment.setNegativeButton(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                dismiss();
             }
         });
         mFragments.add(toFragment);
@@ -93,6 +108,11 @@ public class TimePickerDialog extends DialogFragment {
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
+    }
+
+
+    public interface OnTimeSetListener {
+        void onTimeSet(int fromHourOfDay, int fromMinute, int toHourOfDay, int toMinute);
     }
 
     class Adapter extends FragmentStatePagerAdapter {
