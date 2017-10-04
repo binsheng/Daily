@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
                 .where(Record_Table.startDate.greaterThan(dayStartTime))
                 .and(Record_Table.endDate.lessThan(dayEndTime).or(Record_Table.endDate.isNull))
                 .orderBy(Record_Table.startDate, false)
+                .queryList()
+        datas.addAll(data)
         adapter = DailyAdapter(datas)
         recycleView.layoutManager = LinearLayoutManager(this)
         recycleView.adapter = adapter
