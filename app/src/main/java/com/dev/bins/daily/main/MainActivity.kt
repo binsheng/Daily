@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
 import android.view.animation.AccelerateDecelerateInterpolator
 import com.dev.bins.daily.R
 import com.dev.bins.daily.adapter.DailyAdapter
@@ -75,6 +76,13 @@ class MainActivity : AppCompatActivity() {
         adapter!!.notifyItemInserted(0)
         recycleView.smoothScrollToPosition(0)
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
 
 
     public override fun onStart() {
