@@ -1,7 +1,6 @@
 package com.dev.bins.daily.main
 
 import android.animation.Animator
-import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.text.Editable
@@ -85,18 +84,26 @@ class AddDialog : DialogFragment() {
         }
         btnAddTime.setOnClickListener {
             val timePickerDialog = TimePickerDialog()
-            timePickerDialog.setListener { fromHourOfDay, fromMinute, toHourOfDay, toMinute ->
+            timePickerDialog.setOnTimeSetListener { fromHourOfDay, fromMinute, toHourOfDay, toMinute ->
                 val startCalendar = Calendar.getInstance()
                 startCalendar.set(Calendar.HOUR_OF_DAY, fromHourOfDay)
                 startCalendar.set(Calendar.MINUTE, fromMinute)
                 startCalendar.set(Calendar.SECOND, 0)
-                startTime = startCalendar.time
+                val sTime = startCalendar.time
 
                 val endCalendar = Calendar.getInstance()
                 endCalendar.set(Calendar.HOUR_OF_DAY, toHourOfDay)
                 endCalendar.set(Calendar.MINUTE, toMinute)
                 endCalendar.set(Calendar.SECOND, 0)
-                endTime = endCalendar.time
+                val eTime = endCalendar.time
+
+                if (sTime.after(eTime)){
+                    Toast.makeText(activity,"开始时间比结束时间晚",Toast.LENGTH_SHORT).show()
+                    return@setOnTimeSetListener
+                }
+                startTime = sTime
+                endTime = eTime
+                timePickerDialog.dismiss()
             }
             timePickerDialog.show(childFragmentManager, TAG)
 

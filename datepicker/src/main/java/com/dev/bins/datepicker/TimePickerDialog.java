@@ -41,7 +41,7 @@ public class TimePickerDialog extends DialogFragment {
     public TimePickerDialog() {
     }
 
-    public void setListener(OnTimeSetListener listener) {
+    public void setOnTimeSetListener(OnTimeSetListener listener) {
         this.mListener = listener;
     }
 
@@ -94,7 +94,6 @@ public class TimePickerDialog extends DialogFragment {
                 if (null != mListener) {
                     mListener.onTimeSet(mFromHourOfDay, mFromMinute, mToHourOfDay, mToMinute);
                 }
-                dismiss();
             }
         });
         toFragment.setNegativeButton(new View.OnClickListener() {

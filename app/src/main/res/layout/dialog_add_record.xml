@@ -65,35 +65,41 @@
             </RelativeLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rl_time"
+                android:orientation="horizontal"
                 android:paddingBottom="10dp">
 
 
                 <Button
+                    android:layout_centerVertical="true"
                     android:id="@+id/btnAddTime"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
                     android:background="@mipmap/time" />
+
 
                 <Button
                     android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    android:layout_toLeftOf="@+id/btnSave"
                     android:text="@string/cancel" />
 
+
                 <Button
+                    android:layout_alignParentRight="true"
                     android:id="@+id/btnSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:enabled="false"
+                    android:enabled="true"
                     android:text="@string/save" />
-
-            </LinearLayout>
+            </RelativeLayout>
 
         </RelativeLayout>
     </RelativeLayout>
