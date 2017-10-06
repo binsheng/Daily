@@ -1,11 +1,11 @@
 package com.dev.bins.daily.main
 
 
-import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
+import android.view.MenuItem
 import android.view.animation.AccelerateDecelerateInterpolator
 import com.dev.bins.daily.R
 import com.dev.bins.daily.adapter.DailyAdapter
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        setSupportActionBar(toolbar)
         val startCalendar = Calendar.getInstance()
         startCalendar.set(Calendar.HOUR_OF_DAY, 0)
         startCalendar.set(Calendar.MINUTE, 0)
@@ -81,6 +82,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main,menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (R.id.menu_calendar == item!!.itemId){
+
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 
