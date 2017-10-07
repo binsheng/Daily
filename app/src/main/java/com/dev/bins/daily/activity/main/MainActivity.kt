@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AccelerateDecelerateInterpolator
 import com.dev.bins.daily.R
+import com.dev.bins.daily.activity.BaseActivity
 import com.dev.bins.daily.activity.main.Calendar.CalendarActivity
 import com.dev.bins.daily.adapter.DailyAdapter
 import com.dev.bins.daily.database.Record
@@ -23,21 +24,20 @@ import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+    override fun getLayoutId(): Int {
+        return R.layout.activity_main
+    }
 
 
     var adapter: DailyAdapter? = null
     val datas = ArrayList<Record>()
 
     var addDialog: AddDialog? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        init()
-    }
 
-    private fun init() {
-        setSupportActionBar(toolbar)
+
+    override fun init() {
+        initToolbar(toolbar)
         val startCalendar = Calendar.getInstance()
         startCalendar.set(Calendar.HOUR_OF_DAY, 0)
         startCalendar.set(Calendar.MINUTE, 0)
@@ -83,21 +83,20 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main,menu)
+        menuInflater.inflate(R.menu.main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-        if (R.id.menu_calendar == item!!.itemId){
-            val intent = Intent(this,CalendarActivity::class.java)
+        if (R.id.menu_calendar == item!!.itemId) {
+            val intent = Intent(this, CalendarActivity::class.java)
             startActivity(intent)
             return true
         }
 
         return super.onOptionsItemSelected(item)
     }
-
 
 
     public override fun onStart() {
