@@ -1,10 +1,11 @@
 package com.dev.bins.daily.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.transition.Explode
+import android.transition.Slide
 import android.view.MenuItem
 
 /**
@@ -15,6 +16,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val explode = Explode()
+        explode.duration = 200
+        val slide = Slide()
+        slide.duration = 200
+        window.enterTransition = slide
+        window.exitTransition = explode
+
         setContentView(getLayoutId())
         init()
     }

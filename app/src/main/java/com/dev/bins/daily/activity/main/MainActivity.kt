@@ -3,6 +3,8 @@ package com.dev.bins.daily.activity.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
@@ -91,7 +93,7 @@ class MainActivity : BaseActivity() {
 
         if (R.id.menu_calendar == item!!.itemId) {
             val intent = Intent(this, CalendarActivity::class.java)
-            startActivity(intent)
+            startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
             return true
         }
 
