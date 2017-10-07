@@ -43,6 +43,8 @@ dependencies {
     // RXJava 2 Kotlin Extensions Support
     compile "com.github.Raizlabs.DBFlow:dbflow-rx2-kotlinextensions:${dbflow_version}"
     //eventbus
+    compile project(':datepicker')
+
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -50,8 +52,6 @@ dependencies {
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     compile 'io.reactivex.rxjava2:rxjava:2.+'
-    compile project(':datepicker')
-
     testCompile 'junit:junit:4.12'
 }
 repositories {

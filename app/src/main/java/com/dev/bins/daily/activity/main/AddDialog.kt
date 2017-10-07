@@ -1,4 +1,4 @@
-package com.dev.bins.daily.main
+package com.dev.bins.daily.activity.main
 
 import android.animation.Animator
 import android.os.Bundle
