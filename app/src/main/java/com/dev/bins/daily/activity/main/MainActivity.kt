@@ -93,7 +93,7 @@ class MainActivity : BaseActivity() {
 
         if (R.id.menu_calendar == item!!.itemId) {
             val intent = Intent(this, CalendarActivity::class.java)
-            startActivity(intent,ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+            ActivityCompat.startActivity(this,intent,ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
             return true
         }
 
