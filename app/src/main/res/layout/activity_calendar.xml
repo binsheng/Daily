@@ -6,20 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.dev.bins.daily.activity.main.Calendar.CalendarActivity">
 
-    <!--<include layout="@layout/layout_toolbar" />-->
+    <include layout="@layout/layout_toolbar" />
 
     <com.ldf.calendar.view.MonthPager
+        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/calendarview"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="#fff">
-    </com.ldf.calendar.view.MonthPager>
+        android:background="#fff"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="com.ldf.calendar.behavior.RecyclerViewBehavior"
         android:background="#c2c2c2"
         android:layout_gravity="bottom"/>
 

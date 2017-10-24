@@ -21,16 +21,15 @@ class CalendarActivity : BaseActivity() {
     }
 
     override fun init() {
-//        initToolbar(toolbar,true)
+        initToolbar(toolbar,true)
         calendarDate = CalendarDate()
         val adapter = CalendarViewAdapter(this, object : OnSelectDateListener {
             override fun onSelectOtherMonth(offset: Int) {
                 calendarview.selectOtherMonth(offset)
-
             }
 
             override fun onSelectDate(calendarDate: CalendarDate?) {
-
+                refreshClickDate(calendarDate!!)
             }
 
         }, CalendarAttr.CalendayType.MONTH, CustomeDayView(this, R.layout.custom_day))
