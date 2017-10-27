@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 def dbflow_version = "4.1.1"
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.dev.bins.daily"
         minSdkVersion 21
