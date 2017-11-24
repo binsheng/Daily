@@ -9,17 +9,16 @@
     <include layout="@layout/layout_toolbar" />
 
     <com.ldf.calendar.view.MonthPager
-        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/calendarview"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="#fff"/>
+        android:layout_marginTop="?attr/actionBarSize" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#c2c2c2"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:background="#c2c2c2" />
 
 </android.support.design.widget.CoordinatorLayout>
