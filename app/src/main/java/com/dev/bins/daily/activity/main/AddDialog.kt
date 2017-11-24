@@ -8,6 +8,8 @@ import android.text.TextWatcher
 import android.view.*
 import android.widget.Toast
 import com.dev.bins.daily.R
+import com.dev.bins.daily.R.id.btnSave
+import com.dev.bins.daily.R.id.etContent
 import com.dev.bins.daily.database.Record
 import com.dev.bins.datepicker.TimePickerDialog
 import kotlinx.android.synthetic.main.dialog_add_record.*
@@ -36,16 +38,20 @@ class AddDialog : DialogFragment() {
         dialog.window.attributes = params
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.window.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCanceledOnTouchOutside(false)
         dialog.window.setGravity(Gravity.BOTTOM)
         return inflater!!.inflate(R.layout.dialog_add_record, container)
+
     }
 
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view!!.post {
             val animator = ViewAnimationUtils.createCircularReveal(view, view!!.width, view.height, 0f, view.height.toFloat())
