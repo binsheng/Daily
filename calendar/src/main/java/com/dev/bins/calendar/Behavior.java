@@ -1,6 +1,7 @@
 package com.dev.bins.calendar;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,9 @@ public class Behavior extends CoordinatorLayout.Behavior<RecyclerView> {
 
     private RecycleViewCalendar mCalendarView;
 
+
+    private int initTop;
+
     public Behavior(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -23,16 +27,26 @@ public class Behavior extends CoordinatorLayout.Behavior<RecyclerView> {
     @Override
     public boolean onLayoutChild(CoordinatorLayout parent, RecyclerView child, int layoutDirection) {
 
-        mCalendarView = (RecycleViewCalendar) parent.getChildAt(0);
-        int height = mCalendarView.getMeasuredHeight();
+        mCalendarView = getCalendarView(parent);
+        initTop = mCalendarView.getTop();
         //防止切换月份，引起布局变化
         if (mCalendarView.getState() != CalendarAdapter.STATE_COLLAPSE) {
             parent.onLayoutChild(child, layoutDirection);
-            child.offsetTopAndBottom(height);
+            child.offsetTopAndBottom(mCalendarView.getBottom());
         }
         return true;
     }
 
+
+    public RecycleViewCalendar getCalendarView(CoordinatorLayout parent) {
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            if (parent.getChildAt(i) instanceof RecycleViewCalendar) {
+                return (RecycleViewCalendar) parent.getChildAt(i);
+            }
+        }
+        return null;
+    }
 
 
     @Override
@@ -41,29 +55,9 @@ public class Behavior extends CoordinatorLayout.Behavior<RecyclerView> {
         return directTargetChild == child;
     }
 
+
     @Override
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, RecyclerView child, View target, int dx, int dy, int[] consumed) {
-        System.out.println("onNestedPreScroll");
-//        RecycleViewCalendar calendarView = (RecycleViewCalendar) coordinatorLayout.getChildAt(0);
-//        int top = child.getTop();
-//        int height = calendarView.getMeasuredHeight();
-//        if (top >= height && dy <0) {
-//            consumed[0] = 0;
-//            consumed[1] = 0;
-//            child.offsetTopAndBottom(height - top);
-//            calendarView.offsetTopAndBottom(-calendarView.getTop());
-//            return;
-//        }
-//        if (top<=calendarView.getSelectViewTop() && dy > 0){
-//            consumed[0] = 0;
-//            consumed[1] = 0;
-//            return;
-//        }
-//        child.offsetTopAndBottom(-dy);
-////        calendarView.offsetTopAndBottom((int) (-dy*0.8));
-//        calendarView.onScroll(dy);
-
-
         if (dy > 0) {
             scrollUp(child, dy, consumed);
         } else {
@@ -78,21 +72,21 @@ public class Behavior extends CoordinatorLayout.Behavior<RecyclerView> {
 
         int top = child.getTop();
         //滑动到最小高度
-        if (top <= mCalendarView.getMinTop()) {
+        if (top <= mCalendarView.getMinTop() + initTop) {
 
             consumed[0] = 0;
             consumed[1] = 0;
             return;
         }
         // 是否会超过最小高度
-        if (top - dy > mCalendarView.getMinTop()) {
+        if (top - dy > mCalendarView.getMinTop() + initTop) {
             child.offsetTopAndBottom(-dy);
         } else {
-            child.offsetTopAndBottom(mCalendarView.getMinTop() - top);
+            child.offsetTopAndBottom(mCalendarView.getMinTop() + initTop - top);
         }
 
         // CalendarView向上移动的距离小于当前选中天的 view 的距离顶部的距离
-        if (-mCalendarView.getTop() < mCalendarView.getSelectViewTop()) {
+        if (initTop < mCalendarView.getSelectViewTop()+mCalendarView.getTop()) {
             mCalendarView.offsetTopAndBottom(-dy);
         }
 //        mCalendarView.onScroll(dy);
@@ -100,8 +94,9 @@ public class Behavior extends CoordinatorLayout.Behavior<RecyclerView> {
 
     /**
      * 手指往下拖动
+     *
      * @param child
-     * @param dy <0
+     * @param dy       <0
      * @param consumed
      */
     public void scrollDown(RecyclerView child, int dy, int[] consumed) {
@@ -115,7 +110,7 @@ public class Behavior extends CoordinatorLayout.Behavior<RecyclerView> {
         }
 
         // 日历控件是否超出屏幕
-        if (mCalendarView.getTop() < 0) {
+        if (mCalendarView.getTop() < initTop) {
             mCalendarView.offsetTopAndBottom(-dy);
             child.offsetTopAndBottom(-dy);
             return;
@@ -133,34 +128,20 @@ public class Behavior extends CoordinatorLayout.Behavior<RecyclerView> {
 
     @Override
     public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, RecyclerView child, View target) {
-        System.out.println("onStopNestedScroll");
-        RecycleViewCalendar calendarView = (RecycleViewCalendar) coordinatorLayout.getChildAt(0);
-        int top = child.getTop();
-//        if (top == calendarView.getMinTop()){
-//            return;
+//        System.out.println("onStopNestedScroll");
+//        RecycleViewCalendar calendarView = (RecycleViewCalendar) coordinatorLayout.getChildAt(1);
+//        int top = child.getTop();
+//        int height = calendarView.getMeasuredHeight();
+//        if (top > height / 2) {
+//            calendarView.expand();
+//            child.offsetTopAndBottom(height - top);
+//        } else {
+//            calendarView.collapse();
+//            // child 距离顶部的距离等于选中view的高度
+//            child.offsetTopAndBottom(mCalendarView.getMinTop() - top);
 //        }
-        int height = calendarView.getMeasuredHeight();
-        if (top > height / 2) {
-            calendarView.expand();
-            child.offsetTopAndBottom(height - top);
-        } else {
-            calendarView.collapse();
-            // child 距离顶部的距离等于选中view的高度
-            child.offsetTopAndBottom(mCalendarView.getMinTop() - top);
-        }
-
-
-//        calendarView.onStateChange(top>height/2);
 
     }
 
 
-    //    @Override
-//    public void onNestedScroll(CoordinatorLayout coordinatorLayout, RecyclerView child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-//        System.out.println("dyConsumed:"+dyConsumed);
-//        System.out.println("dyUnconsumed:"+dyUnconsumed);
-//        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
-//        RecycleViewCalendar calendarView = (RecycleViewCalendar) coordinatorLayout.getChildAt(0);
-//        calendarView.offsetTopAndBottom(-dyUnconsumed);
-//    }
 }

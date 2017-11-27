@@ -40,9 +40,6 @@ class CalendarAdapter(datas: ArrayList<Record>) : RecyclerView.Adapter<CalendarA
 
         val tvContent = itemView!!.tvContent
 
-
-
-
     }
 
 }
