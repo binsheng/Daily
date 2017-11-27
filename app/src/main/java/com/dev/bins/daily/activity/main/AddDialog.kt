@@ -46,15 +46,15 @@ class AddDialog : DialogFragment() {
         dialog.window.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCanceledOnTouchOutside(false)
         dialog.window.setGravity(Gravity.BOTTOM)
-        return inflater!!.inflate(R.layout.dialog_add_record, container)
+        return inflater.inflate(R.layout.dialog_add_record, container)
 
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view!!.post {
-            val animator = ViewAnimationUtils.createCircularReveal(view, view!!.width, view.height, 0f, view.height.toFloat())
+        view.post {
+            val animator = ViewAnimationUtils.createCircularReveal(view, view.width, view.height, 0f, view.height.toFloat())
             animator.duration = 200
             animator.start()
             createExitAnimator(view)
@@ -119,7 +119,7 @@ class AddDialog : DialogFragment() {
     }
 
     private fun createExitAnimator(view: View) {
-        exitAnimator = ViewAnimationUtils.createCircularReveal(view, view!!.width, view.height, view.height.toFloat(), 0f)
+        exitAnimator = ViewAnimationUtils.createCircularReveal(view, view.width, view.height, view.height.toFloat(), 0f)
         exitAnimator!!.duration = 200
         exitAnimator!!.addListener(object : Animator.AnimatorListener {
             override fun onAnimationEnd(p0: Animator?) {

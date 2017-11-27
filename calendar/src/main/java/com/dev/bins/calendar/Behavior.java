@@ -22,7 +22,8 @@ public class Behavior extends CoordinatorLayout.Behavior<RecyclerView> {
 
     @Override
     public boolean onLayoutChild(CoordinatorLayout parent, RecyclerView child, int layoutDirection) {
-        mCalendarView = (RecycleViewCalendar) parent.getChildAt(0);
+
+        mCalendarView = (RecycleViewCalendar) parent.getChildAt(1);
         int height = mCalendarView.getMeasuredHeight();
         //防止切换月份，引起布局变化
         if (mCalendarView.getState() != CalendarAdapter.STATE_COLLAPSE) {
