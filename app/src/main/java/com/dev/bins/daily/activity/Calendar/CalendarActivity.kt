@@ -43,7 +43,28 @@ class CalendarActivity : BaseActivity() {
                 .queryList()
 
         datas.addAll(data)
+        calendarview.setOnItemClickListener { position, date ->
+            startCalendar.time = date
+            startCalendar.set(Calendar.HOUR_OF_DAY, 0)
+            startCalendar.set(Calendar.MINUTE, 0)
+            startCalendar.set(Calendar.SECOND, 0)
 
+            endCalendar.time = date
+            endCalendar.set(Calendar.HOUR_OF_DAY, 23)
+            endCalendar.set(Calendar.MINUTE, 59)
+            endCalendar.set(Calendar.SECOND, 59)
+
+            datas.clear()
+            val data = SQLite.select()
+                    .from(Record::class.java)
+                    .where(Record_Table.startDate.greaterThan(dayStartTime))
+                    .and(Record_Table.endDate.lessThan(dayEndTime).or(Record_Table.endDate.isNull))
+                    .orderBy(Record_Table.startDate, false)
+                    .queryList()
+
+            datas.addAll(data)
+            adapter!!.notifyDataSetChanged()
+        }
         adapter = CalendarAdapter(datas)
         recycleView.layoutManager = LinearLayoutManager(this)
         recycleView.adapter = adapter
