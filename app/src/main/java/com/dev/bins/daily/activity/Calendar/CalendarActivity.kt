@@ -57,8 +57,8 @@ class CalendarActivity : BaseActivity() {
             datas.clear()
             val data = SQLite.select()
                     .from(Record::class.java)
-                    .where(Record_Table.startDate.greaterThan(dayStartTime))
-                    .and(Record_Table.endDate.lessThan(dayEndTime).or(Record_Table.endDate.isNull))
+                    .where(Record_Table.startDate.greaterThan(startCalendar.time))
+                    .and(Record_Table.endDate.lessThan(endCalendar.time).or(Record_Table.endDate.isNull))
                     .orderBy(Record_Table.startDate, false)
                     .queryList()
 
